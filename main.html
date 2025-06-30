@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>연습장</title>
+<!-- <script src="accordion.js" defer></script> -->
+<script type="module" src="node_modules/sgj-accordion/accordion.js"></script>
+  <style>
+    @import url(https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined); 
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    .body {
+        border: 1px solid #ddd;
+        margin: 5px;
+        overflow: hidden;
+        width: 90vw;
+        height: 90vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .menu {
+        --main-color: #ffbe1a;
+        --sub-color: #726e6e;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 200px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        background: #fff;
+        border-right: 1px solid #eee;
+
+        .icon_alpha {
+            color: transparent;
+            background: linear-gradient(-45deg, #aaa 25%, var(--main-color) 50%, #aaa 75%);
+            background-clip: text;
+        }
+
+        h1 {
+            font-size: 1em;
+            font-weight: normal;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 5px;
+
+            span:last-child {
+                margin-left: auto;
+            }
+        }
+
+        h2 {
+            font-size: 1.1em;
+            padding: 10px 40px;
+            border-top: 3px solid var(--main-color);
+            color: var(--sub-color);
+        }
+    }
+
+  </style>
+</head>
+<body>
+    <div class="body">
+
+    <nav class="menu">
+        <h1>
+            <span class="material-symbols-outlined icon_alpha">emoji_people</span>
+            <span>SGJ</span>
+            <span class="material-symbols-outlined">close</span>
+        </h1>
+
+        <h2>카테고리</h2>
+        <article>
+        </article>
+    </nav>
+
+    </div>
+</body>
+<script>
+    Promise.resolve([{
+        title: "여성의류",
+        icon: "apparel",
+        data: ["원피스","블라우스","티셔츠","셔츠","스웨터","카디건","조끼","바지","치마","레깅스","재킷","코트","정장","트레이닝복"]
+    },
+    {
+        title: "여성신발",
+        icon: "steps",
+        data: ["원피스"]
+    },
+    {
+        title: "여성가방",
+        icon: "shopping_bag",
+        data: ["원피스"]
+    },
+    ]).then(data => {
+        data.forEach(e => 
+        document.querySelector("article").innerHTML += `
+            <accordion name="group_a" title="${e.title}" icon="${e.icon}">${e.data}</accordion>
+        `)
+    })
+</script>
+</html>
